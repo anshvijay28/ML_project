@@ -19,7 +19,7 @@ Given the World Sustainability Dataset we want to cluster countries by relevant 
 | Ansh Vijay  | Setting up Github Pages <br /> Contribution Table <br /> UI of website <br /> Problem definition|
 | John Zhang  | Potential Results and Discussion |
 | Nicholas Polimeni | Found dataset <br /> Introduction/Background <br /> Gannt Chart|
-| LA          | Recording Video <br /> Methods |
+| Lalith Siripurapu | Recording Video <br /> Methods |
 
 
 # Gantt Chart
