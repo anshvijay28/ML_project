@@ -36,7 +36,7 @@ Mathrani, Anuradha, Jian Wang, Ding Li, and Xuanzhen Zhang. 2023. "Clustering An
 | Name        | Contribution|
 | ----------- | ----------- |
 | Ansh Vijay  | Setting up Github Pages <br /> Contribution Table <br /> UI of website <br /> Problem definition|
-| John Zhang  | Potential Results and Discussion <br /> Recording video |
+| John Zhang  | Potential Results and Discussion |
 | Nicholas Polimeni | Found dataset <br /> Introduction/Background <br /> Gannt Chart|
 | Lalith Siripurapu | Recording Video <br /> Methods |
 
@@ -47,5 +47,5 @@ Mathrani, Anuradha, Jian Wang, Ding Li, and Xuanzhen Zhang. 2023. "Clustering An
 [World Sustainability Dataset](https://www.kaggle.com/datasets/truecue/worldsustainabilitydataset?select=WorldSustainabilityDataset.csv)
 
 # Video Link 
-[Link to video]()
+[Link to video](https://drive.google.com/file/d/1789Y8SjC8hon8YtUltt1fyv1lqtAgFSD/view?usp=sharing)
 
