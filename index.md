@@ -152,6 +152,13 @@ Unfortunately, after PC7 it's hard to determine a common theme among features. O
 # Methods
 After identifying proper features/dimensions needed, we will perform GMM clustering to see which countries are closely related in their sustainability approach. Additionally, we will use linear regression to see if there is any correlation between countries and any sustainability characteristic. Furthermore, random forests and support vector machines will be used to make predictions. The goal is to identify countries that have similar sustainability practices and why. 
 
+# Hierarchical Clustering
+Using our reduced dataset, we constructed a dendrogram using hierarchical clustering. 
+
+![Dendrogram](pictures/WSdendrogram5.png)
+
+Due to the structure of the reduced data, the dendrogram shows the index of individual points where appropriate, and a higher depth is required to see where other data points are clustered. However, there are thousands of datapoints, so they are difficult to individually label in a dendrogram.
+
 # Potential Results and Discussion
 Results of clustering will be evaluated using internal measures because the dataset does not contain labels for it. The goodness of the clustering will be evaluated using methods such as Silhouette Coefficient, normalized cut, Beta-CV, and Davies-Bouldin Index. Information Theory techniques can be applied to determine the effect of each feature on the final classification. With the predictions obtained from a random forest or support vector machine, the linear regression generated will be evaluated using any of three APIs offered by Scikit. The accuracy of the predictions will give insight into how correlated certain features are and which are likely to be predictors of future prosperity in a given category. This can inform different choices in features to use for clustering to create more accurate models.
 
