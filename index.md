@@ -171,19 +171,19 @@ grid_search = GridSearchCV(
 )
 grid_search.fit(final_pca_25)
 ```
-![image](https://github.com/anshvijay28/ML_project/tree/main/data/bic_png.png)
+![image](pictures/bic.png)
 
 The above plot shows that the BIC score is lowest with 1 cluster, closely followed by 2 clusters, for a diagonal GMM distribution. We continued the analysis with the 2-cluster diagonal method. Further discussion on this discussion on this decision can be found in the findings section.
 
 ### GMM Visualizations
-![image](https://github.com/anshvijay28/ML_project/tree/main/data/clusters_region.png)
+![image](pictures/clusters_region.png)
 
 For a more granular regional breakdown, we can use sub-region definitions:
-![image](https://github.com/anshvijay28/ML_project/tree/main/data/clusters_sub.png)
+![image](pictures/clusters_sub.png)
 
 To analyze each region and sub-region in more detail, we can use pair plots:
-![image](https://github.com/anshvijay28/ML_project/tree/main/data/pairwise_region.png)
-![image](https://github.com/anshvijay28/ML_project/tree/main/data/pairwise_sub.png)
+![image](pictures/pairwise_region.png)
+![image](pictures/pairwise_sub.png)
 
 ### Silhouette Score
 Silhouette Coefficient: 0.219
