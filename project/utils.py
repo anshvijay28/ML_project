@@ -136,7 +136,7 @@ def viz_pca_heatmap(df, n):
     df_std = scaler.fit_transform(df)
 
     pca = PCA(n_components=n)
-    pca.fit_transform(df_std)
+    pca_df = pd.DataFrame(pca.fit_transform(df_std))
 
     loadings = create_loadings(df, pca)
 
@@ -145,7 +145,7 @@ def viz_pca_heatmap(df, n):
     plt.title("PCA Loadings")
     plt.xlabel("Principal Components")
     plt.ylabel("Original Features")
-    return pca, plt
+    return pca, pca_df, plt
 
 
 def viz_corr_heatmap(corr_df, is_absolute):
