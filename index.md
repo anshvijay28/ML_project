@@ -196,7 +196,9 @@ For a more granular regional breakdown, we can use sub-region definitions:
 ![image](pictures/clusters_sub.png)
 
 To analyze each region and sub-region in more detail, we can use pair plots:
+**By Region**
 ![image](pictures/pairwise_region.png)
+**By Sub-Region**
 ![image](pictures/pairwise_sub.png)
 
 ### Silhouette Score
@@ -227,7 +229,7 @@ Mathrani, Anuradha, Jian Wang, Ding Li, and Xuanzhen Zhang. 2023. "Clustering An
 | ----------- | ----------- |
 | Ansh Vijay  | Setting up Github Pages <br /> Contribution Table <br /> UI of website <br /> Problem definition <br /> Dataset description <br /> Data Cleaning|
 | John Zhang  | Potential Results and Discussion <br /> DBSCAN <br /> Hierarchical Clustering <br /> Clustering Metrics|
-| Nicholas Polimeni | Found dataset <br /> Introduction/Background <br /> Gannt Chart <br /> Feature Engineering <br /> PCA <br /> GMM|
+| Nicholas Polimeni | Found dataset <br /> Introduction/Background <br /> Gannt Chart <br /> Feature Engineering <br /> PCA <br /> GMM <br /> Analysis|
 | Lalith Siripurapu | Recording Video <br /> Methods <br /> PCA|
 
 # Gantt Chart
