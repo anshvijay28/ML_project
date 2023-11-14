@@ -168,6 +168,13 @@ After performing PCA, we will use these components to perform GMM and hierarchic
 
 Results of clustering will be evaluated using internal measures because the dataset does not contain labels. The effectiveness of the clustering will be evaluated using methods such as Silhouette Coefficient, normalized cut, Beta-CV, and Davies-Bouldin Index. More specifically, for GMM, we will use BIC score to determine the optimal number of components to use in the analysis, and then validate the clustering with the Silhouette score.
 
+# Hierarchical Clustering
+Using our reduced dataset, we constructed a dendrogram using hierarchical clustering. 
+
+![Dendrogram](pictures/WSdendrogram5.png)
+
+Due to the structure of the reduced data, the dendrogram shows the index of individual points where appropriate, and a higher depth is required to see where other data points are clustered. However, there are thousands of datapoints, so they are difficult to individually label in a dendrogram.
+
 # Potential Results and Discussion
 ## GMM
 ### BIC Score (Model Selection/Tuning)
