@@ -171,19 +171,19 @@ grid_search = GridSearchCV(
 )
 grid_search.fit(final_pca_25)
 ```
-![image](https://github.com/anshvijay28/ML_project/assets/24326515/c1fce9c3-d746-4a4f-9ef4-a9662881d391)
+![image](https://github.com/anshvijay28/ML_project/tree/main/data/bic_png.png)
 
 The above plot shows that the BIC score is lowest with 1 cluster, closely followed by 2 clusters, for a diagonal GMM distribution. We continued the analysis with the 2-cluster diagonal method. Further discussion on this discussion on this decision can be found in the findings section.
 
 ### GMM Visualizations
-![image](https://github.com/anshvijay28/ML_project/assets/24326515/9998b7a9-6275-4e10-b23b-e95470716395)
+![image](https://github.com/anshvijay28/ML_project/tree/main/data/clusters_region.png)
 
 For a more granular regional breakdown, we can use sub-region definitions:
-![image](https://github.com/anshvijay28/ML_project/assets/24326515/16dbf368-d9e1-453e-a4da-c02932dfe595)
+![image](https://github.com/anshvijay28/ML_project/tree/main/data/clusters_sub.png)
 
 To analyze each region and sub-region in more detail, we can use pair plots:
-![image](https://github.com/anshvijay28/ML_project/assets/24326515/f79ac66c-38c6-4b21-9a4b-af65dce1cd2c)
-![image](https://github.com/anshvijay28/ML_project/assets/24326515/646bc94a-49fd-4be9-90b6-7e1d59c0c508)
+![image](https://github.com/anshvijay28/ML_project/tree/main/data/pairwise_region.png)
+![image](https://github.com/anshvijay28/ML_project/tree/main/data/pairwise_sub.png)
 
 ### Silhouette Score
 Silhouette Coefficient: 0.219
