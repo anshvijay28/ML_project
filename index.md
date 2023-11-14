@@ -150,10 +150,53 @@ Based on the data we can categorize the first 7 PCA components based on the simi
 Unfortunately, after PC7 it's hard to determine a common theme among features. Overall, this analysis will be useful to determine which countries do well in Human Development, Trade, etc when the data is plotted in the z-space from the PCA components. 
 
 # Methods
-After identifying proper features/dimensions needed, we will perform GMM clustering to see which countries are closely related in their sustainability approach. Additionally, we will use linear regression to see if there is any correlation between countries and any sustainability characteristic. Furthermore, random forests and support vector machines will be used to make predictions. The goal is to identify countries that have similar sustainability practices and why. 
+After performing PCA, we will use these components to perform GMM and hierarchical clustering, then analyze and visualize the results to identify inter-region and intra-regional trends.
+
+Results of clustering will be evaluated using internal measures because the dataset does not contain labels. The effectiveness of the clustering will be evaluated using methods such as Silhouette Coefficient, normalized cut, Beta-CV, and Davies-Bouldin Index. More specifically, for GMM, we will use BIC score to determine the optimal number of components to use in the analysis, and then validate the clustering with the Silhouette score.
 
 # Potential Results and Discussion
-Results of clustering will be evaluated using internal measures because the dataset does not contain labels for it. The goodness of the clustering will be evaluated using methods such as Silhouette Coefficient, normalized cut, Beta-CV, and Davies-Bouldin Index. Information Theory techniques can be applied to determine the effect of each feature on the final classification. With the predictions obtained from a random forest or support vector machine, the linear regression generated will be evaluated using any of three APIs offered by Scikit. The accuracy of the predictions will give insight into how correlated certain features are and which are likely to be predictors of future prosperity in a given category. This can inform different choices in features to use for clustering to create more accurate models.
+## GMM
+### BIC Score (Model Selection/Tuning)
+Below is the result from a BIC score analysis. The BIC score roughly measures how good the GMM distribution is at predicting the true sample. A lower BIC score is optimal.
+```python
+def gmm_bic_score(estimator, X):
+    return -estimator.bic(X)
+
+param_grid = {
+    "n_components": range(1, 27),
+    "covariance_type": ["spherical", "tied", "diag", "full"],
+}
+grid_search = GridSearchCV(
+    GaussianMixture(), param_grid=param_grid, scoring=gmm_bic_score
+)
+grid_search.fit(final_pca_25)
+```
+![image](https://github.com/anshvijay28/ML_project/assets/24326515/c1fce9c3-d746-4a4f-9ef4-a9662881d391)
+
+The above plot shows that the BIC score is lowest with 1 cluster, closely followed by 2 clusters, for a diagonal GMM distribution. We continued the analysis with the 2-cluster diagonal method. Further discussion on this discussion on this decision can be found in the findings section.
+
+### GMM Visualizations
+![image](https://github.com/anshvijay28/ML_project/assets/24326515/9998b7a9-6275-4e10-b23b-e95470716395)
+
+For a more granular regional breakdown, we can use sub-region definitions:
+![image](https://github.com/anshvijay28/ML_project/assets/24326515/16dbf368-d9e1-453e-a4da-c02932dfe595)
+
+To analyze each region and sub-region in more detail, we can use pair plots:
+![image](https://github.com/anshvijay28/ML_project/assets/24326515/f79ac66c-38c6-4b21-9a4b-af65dce1cd2c)
+![image](https://github.com/anshvijay28/ML_project/assets/24326515/646bc94a-49fd-4be9-90b6-7e1d59c0c508)
+
+### Silhouette Score
+Silhouette Coefficient: 0.219
+
+### GMM Findings
+GMM clustering does not appear to be highly effective for this data. The BIC score indicated that the best number of clusters is 1, however, the score for 2 clusters was not significantly worse. We chose to use two clusters to understand, through analysis and visualization, how GMM was separating countries.
+
+Most regions have a balanced mix of nations regarding their development, economic, and sustainability metrics. Most notably, there appears to be no significant inter-regional trend- e.g. regions that are traditionally considered highly developed (Western Europe for instance) have many countries in the "Blue" cluster, but so do regions that are traditionally considered developing (Sub-Saharan Africa for instance). Such findings indicate that there is a balance between economic development and other sustainability metrics, such as emissions per capita. Such traditionally under-developed countries have much lower environmental impact per capita, and as a result, are grouped with traditionally developed countries due to their outsized performance on these metrics.
+
+For intra-regional analysis, some notable outliers within their regions are:
+- Ukraine (Eastern Europe): Ukraine has historically been an agrarian economy. Such economies are often less developed and produce fewer emissions. However, the region as a whole is generally considered a mix of more and less developed nations, so, notably, Ukraine is such an outlier.
+- Hong Kong and Mongolia (Eastern Asia): Hong Kong, due to its size and lack of many natural resources, is necessarily an incredibly efficient (due to population density) nation with few industrial emissions. Mongolia is the least developed nation in the region and is somewhat agrarian.
+- Spain and Albania (Southern Europe): Spain is extremely well developed in terms of human development, but suffers on a few economic measures like GDP per capita. However, due to their robust social services and public transit, it is not surprising that they perform well on other sustainability metrics. Albania is generally considered a developing European country and likely performs low on economic measures, but well on emissions and other sustainability metrics as a result.
 
 # References 
 Çağlar, M., Gürler, C. Sustainable Development Goals: A cluster analysis of worldwide countries. Environ Dev Sustain 24, 8593–8624 (2022). https://doi.org/10.1007/s10668-021-01801-6
