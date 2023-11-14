@@ -137,6 +137,20 @@ In order to determine which of the original features contribute to each PCA comp
 
 ![PCA Heatmap](pictures/PCAheatmap.png)
 
+A numerical analysis shows the above with precision (sample shown below):
+
+> PC1 top 5 features and explained variance: \
+> Life Expectancy: 0.8397 \
+> Population Using Internet (%): 0.8397 \
+> Electricity Access (%): 0.7635 \
+> Secondary School Enrollment (%): 0.7616
+
+> PC2 top 5 features and explained variance: \
+> Consumption Expenditure (% GDP): 0.4801 \
+> Gross Savings (% GDP): 0.4304 \
+> Trade Deficit (% GDP): 0.3146 \
+> Women Business and Law Index: 0.3123
+
 Based on the data we can categorize the first 7 PCA components based on the similarities of the features that heavily contribute to the component. 
 
 - PC1: Human Development 
