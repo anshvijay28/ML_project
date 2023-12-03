@@ -169,11 +169,140 @@ After performing PCA, we will use these components to perform GMM and hierarchic
 Results of clustering will be evaluated using internal measures because the dataset does not contain labels. The effectiveness of the clustering will be evaluated using methods such as Silhouette Coefficient, normalized cut, Beta-CV, and Davies-Bouldin Index. More specifically, for GMM, we will use BIC score to determine the optimal number of components to use in the analysis, and then validate the clustering with the Silhouette score.
 
 # Hierarchical Clustering
+
+## Determining the Optimal number of clusters
+
 Using our reduced dataset, we constructed a dendrogram using hierarchical clustering. 
+```
+linkage_matrix = linkage(data, 'ward') 
+fig = plt.figure(figsize=(50, 50))
+dn = dendrogram(linkage_matrix)
+plt.title("World Sustainability Dendrogram")
+plt.xlabel("Index of point")
+plt.show()
+```
+![Dendrogram](pictures/newDendogram.png)
 
-![Dendrogram](pictures/WSdendrogram5.png)
+Due to the structure of the reduced data, the dendrogram shows the index of individual points where appropriate, and a higher depth is required to see where other data points are clustered. However, there are hundreds of datapoints, so they are difficult to individually label in a dendrogram. Regardless, the structure of the dendrogram can help us determine the optimal amount of clusters. 
+<br>
+<br>
+Another data structure we can look at to help us determine the optimal number of clusters is the linkage matrix. The structure of the linkage matrix will be (N - 1, 4). Each row of the linkage matrix represents 
+a merging of 2 clusters. Here is part of the linkage matrix:
+<br>
+<br>
+```
+[ 44.        ,  53.        ,   1.88994741,   2.        ],
+[140.        , 174.        ,   1.90087188,   3.        ],
+[127.        , 139.        ,   2.01059507,   2.        ],
+[ 58.        , 143.        ,   2.02071585,   2.        ],
+[115.        , 173.        ,   2.1303943 ,   3.        ],
+[ 33.        ,  43.        ,   2.21874849,   2.        ],
+[ 48.        , 105.        ,   2.28122269,   2.        ],
+[ 24.        , 130.        ,   2.28715035,   2.        ],
+[ 15.        , 114.        ,   2.36380808,   2.        ],
+[ 72.        , 120.        ,   2.40411764,   2.        ],
+[ 20.        , 135.        ,   2.46453695,   2.        ],
+[  8.        , 128.        ,   2.4899263 ,   2.        ],
+[ 90.        , 179.        ,   2.55922116,   3.        ],
+[104.        , 136.        ,   2.57177356,   2.        ],
+[  0.        ,  61.        ,   2.60297966,   2.        ],
+[ 27.        , 109.        ,   2.60548906,   2.        ],
+[ 71.        , 102.        ,   2.69120678,   2.        ],
+[  4.        , 180.        ,   2.76417816,   3.        ],
+[176.        , 181.        ,   2.804367  ,   4.        ],
+[106.        , 187.        ,   2.80926436,   3.        ],
+[  5.        , 108.        ,   2.82883208,   2.        ],
+```
 
-Due to the structure of the reduced data, the dendrogram shows the index of individual points where appropriate, and a higher depth is required to see where other data points are clustered. However, there are thousands of datapoints, so they are difficult to individually label in a dendrogram.
+- Index 0: Cluster Index (Individual points are considered clusters)
+- Index 1: Cluster Index  (Individual points are considered clusters)
+- Index 2: Distance between the 2 clusters 
+- Index 3: How many points are in the newly formed cluster 
+
+### Visualizing Linkage Matrix 
+Because each row represent a merge step in the hierarchical clustering process, we can plot the distance 
+across each merge step (row index of linkage matrix). We will inspect where the distance shoots up greatly
+and determine the optimal number of clusters by the number of clusters at that merge step. This is because
+A hike in distance means that 2 relatively far clusters got merged together, a merge we would not want to happen. We can visualize this relationship with the following code:
+```
+plt.figure(figsize=(10, 8))
+
+plt.title('Cluster Distance Each Step')
+steps = [i for i in range(1, linkage_matrix.shape[0] + 1)]
+distances = linkage_matrix[:, 2]
+plt.xlabel('Step')
+plt.ylabel('Distance')
+plt.plot(steps, distances)
+plt.show()
+```
+![Linkage Matrix](pictures/linkage_matrix.png)
+
+We see the spike happens around merge step ~160. After some interpolation of the cluster indices the linkage matrix assigns, we determine the optimal number of clusters is 2. Additionally, we can inspect the dendrogram and see tha there are 3 main colors. Subtracting 1 from 3, we get 2 clusters (we subtract 1 because of the top blue connection). 
+
+## Cluster assignment
+After determining the number of clusters the cluster assignment is trivial. We simply use the AgglomerativeClustering class. 
+
+```
+model = AgglomerativeClustering(n_clusters=2, metric='euclidean', linkage='ward')
+cluster_labeling = model.fit_predict(data)
+cluster_labeling
+
+array([0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0,
+       0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+       1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0,
+       1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0,
+       1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0,
+       1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1])
+```
+
+## Merge PCA data with Metadata Columns
+
+Currently, the dataset we are using for hierarchical clustering has 25 PCA components. In order to plot these points and identify any trends/correlations we must append each data point with its region, subregion, and cluster assignment for visualization purposes. 
+
+```
+sustain_w_regions = pd.read_csv("../data/sustainability_w_regions.csv")
+data = pd.read_csv("../data/final_pca_dataset.csv")
+
+rename = dict(zip(list(sustain_w_regions.columns), utils.feature_short_names))
+df = sustain_w_regions.rename(rename, axis=1) 
+df = df.sort_values(by=["Name", "Year"]).groupby("Name").bfill().ffill()
+df = df.drop_duplicates(subset=['Alpha-2'], keep='last')
+location_metadata = df[['region', 'sub-region']]
+
+data.reset_index(drop=True, inplace=True)
+location_metadata.reset_index(drop=True, inplace=True)
+
+merged_data = pd.concat([data, location_metadata], axis=1)
+
+# Add cluster Metadata column to dataset
+merged_data["cluster"] = cluster_labeling
+merged_data.to_csv('hierarchicalClusteringDataset.csv', index=False)
+```
+
+## Data visualization  
+Finally, we can visualize the data. Because we can't comprehend more than 3 dimensions we begin by plotting the data against their PCA1 and PCA2 features: 
+
+![Initial Graph](pictures/initgraph.png)
+
+Although we can see a clear clusters, we cannot identify which region each data point belongs to. Thus, we assign each region a symbol and identify location that way. After implementing this we can visualize the dataset plotted against every pair of the 7 PCA components we have assigned semantic meaning to (PCA1 - PCA7). After the inspection of these graphs we have determined graphs plotted against PCA1 to be the most informative. Therefore, below are the graphs of every PCA component plotted against PCA1. 
+
+ | ![PCA12](pictures/PCA12.png) | ![PCA13](pictures/PCA13.png) |
+ | -----------------------------|------------------------------|    
+ | ![PCA14](pictures/PCA14.png) | ![PCA15](pictures/PCA15.png) |
+ | -----------------------------|------------------------------|
+ | ![PCA16](pictures/PCA16.png) | ![PCA17](pictures/PCA17.png) |
+
+## Metrics 
+```
+Silhouette Coefficient: 0.26
+Davies Bouldin Score: 1.62
+```
+
+### Hierarchical Clustering Findings 
+
+TODO
 
 # Potential Results and Discussion
 ## GMM
@@ -234,7 +363,7 @@ Mathrani, Anuradha, Jian Wang, Ding Li, and Xuanzhen Zhang. 2023. "Clustering An
 
 | Name        | Contribution|
 | ----------- | ----------- |
-| Ansh Vijay  | Setting up Github Pages <br /> Contribution Table <br /> UI of website <br /> Problem definition <br /> Dataset description <br /> Data Cleaning|
+| Ansh Vijay  | Setting up Github Pages <br /> Contribution Table <br /> UI of website <br /> Problem definition <br /> Dataset description <br /> Data Cleaning <br /> Hierarchical Clustering Metrics <br /> Hierarchical Clustering Visualizations|
 | John Zhang  | Potential Results and Discussion <br /> DBSCAN <br /> Hierarchical Clustering <br /> Clustering Metrics|
 | Nicholas Polimeni | Found dataset <br /> Introduction/Background <br /> Gannt Chart <br /> Feature Engineering <br /> PCA <br /> GMM <br /> Analysis|
 | Lalith Siripurapu | Recording Video <br /> Methods <br /> PCA|
