@@ -367,7 +367,7 @@ For this analysis, we use two models: linear and Ridge regression. We test both 
 ![image](pictures/linear_reg.png)
 
 ## Ridge Regression
-We fit a Ridge regression for every alpha between 0 and 100, using increments of 2. From this, we determined that the **optimal alphas are 70 and 5** for region and sub-region Ridge regressions, respectively.
+We fit a Ridge regression for every alpha between 0 and 100, using increments of 2. From this, we determined that the **optimal alphas are 10 and 20** for region and sub-region Ridge regressions, respectively.
 
 ![image](pictures/alpha_plot.png)
 
