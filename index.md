@@ -305,7 +305,7 @@ Davies Bouldin Score: 1.62
 
 ### Hierarchical Clustering Findings 
 
-TODO
+Visually, Hierarchical Clustering was highly effective, with the first PCA component alone being very accurate at predicting which cluster a given point would belong to. However, the metrics still evaluated poorly.
 
 
 ## GMM
