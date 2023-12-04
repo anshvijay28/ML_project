@@ -170,9 +170,10 @@ After performing PCA, we will use these components to perform GMM and hierarchic
 
 Results of clustering will be evaluated using internal measures because the dataset does not contain labels. The effectiveness of the clustering will be evaluated using methods such as Silhouette Coefficient, normalized cut, Beta-CV, and Davies-Bouldin Index. More specifically, for GMM, we will use BIC score to determine the optimal number of components to use in the analysis, and then validate the clustering with the Silhouette score.
 
-# Hierarchical Clustering
+# Results and Discussion
+## Hierarchical Clustering
 
-## Determining the Optimal number of clusters
+### Determining the Optimal number of clusters
 
 Using our reduced dataset, we constructed a dendrogram using hierarchical clustering. 
 ```
@@ -225,7 +226,7 @@ a merging of 2 clusters. Here is part of the linkage matrix:
 Because each row represent a merge step in the hierarchical clustering process, we can plot the distance 
 across each merge step (row index of linkage matrix). We will inspect where the distance shoots up greatly
 and determine the optimal number of clusters by the number of clusters at that merge step. This is because
-A hike in distance means that 2 relatively far clusters got merged together, a merge we would not want to happen. We can visualize this relationship with the following code:
+a hike in distance means that 2 relatively far clusters got merged together, a merge we would not want to happen. We can visualize this relationship with the following code:
 ```
 plt.figure(figsize=(10, 8))
 
@@ -239,9 +240,9 @@ plt.show()
 ```
 ![Linkage Matrix](pictures/linkage_matrix.png)
 
-We see the spike happens around merge step ~160. After some interpolation of the cluster indices the linkage matrix assigns, we determine the optimal number of clusters is 2. Additionally, we can inspect the dendrogram and see tha there are 3 main colors. Subtracting 1 from 3, we get 2 clusters (we subtract 1 because of the top blue connection). 
+We see the spike happens around merge step ~160. After some interpolation of the cluster indices the linkage matrix assigns, we determine the optimal number of clusters is 2. Additionally, we can inspect the dendrogram and see that there are 3 main colors. Subtracting 1 from 3, we get 2 clusters (we subtract 1 because of the top blue connection). 
 
-## Cluster assignment
+### Cluster assignment
 After determining the number of clusters the cluster assignment is trivial. We simply use the AgglomerativeClustering class. 
 
 ```
@@ -259,7 +260,7 @@ array([0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0,
        1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1])
 ```
 
-## Merge PCA data with Metadata Columns
+### Merge PCA data with Metadata Columns
 
 Currently, the dataset we are using for hierarchical clustering has 25 PCA components. In order to plot these points and identify any trends/correlations we must append each data point with its region, subregion, and cluster assignment for visualization purposes. 
 
@@ -283,7 +284,7 @@ merged_data["cluster"] = cluster_labeling
 merged_data.to_csv('hierarchicalClusteringDataset.csv', index=False)
 ```
 
-## Data visualization  
+### Data visualization  
 Finally, we can visualize the data. Because we can't comprehend more than 3 dimensions we begin by plotting the data against their PCA1 and PCA2 features: 
 
 ![Initial Graph](pictures/initgraph.png)
@@ -296,7 +297,7 @@ Although we can see a clear clusters, we cannot identify which region each data 
  | -----------------------------|------------------------------|
  | ![PCA16](pictures/PCA16.png) | ![PCA17](pictures/PCA17.png) |
 
-## Metrics 
+### Metrics 
 ```
 Silhouette Coefficient: 0.26
 Davies Bouldin Score: 1.62
@@ -306,7 +307,7 @@ Davies Bouldin Score: 1.62
 
 TODO
 
-# Potential Results and Discussion
+
 ## GMM
 ### BIC Score (Model Selection/Tuning)
 Below is the result from a BIC score analysis. The BIC score roughly measures how good the GMM distribution is at predicting the true sample. A lower BIC score is optimal.
