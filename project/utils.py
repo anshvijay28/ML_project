@@ -174,16 +174,17 @@ def viz_corr_heatmap(corr_df, is_absolute):
     return f
 
 
-def viz_regression(actual, predicted, y_test):
-    sns.set_theme(style="whitegrid")
-    results = pd.DataFrame({"Actual": actual, "Predicted": predicted})
-    plt.figure(figsize=(10, 6))
+def viz_regression(actual, predicted):
+    data = pd.DataFrame({"Actual": actual, "Predicted": predicted})
 
-    plot = sns.scatterplot(x="Actual", y="Predicted", data=results)
-    plt.plot(
-        [y_test.min(), y_test.max()], [y_test.min(), y_test.max()], color="red", lw=2
-    )  # Diagonal line
-    plt.title("Actual vs Predicted Values (Linear Regression)")
-    plt.xlabel("Actual Values")
-    plt.ylabel("Predicted Values")
-    return plot
+    # print(original_labels)
+    sns.set(style="whitegrid")
+
+    # Plotting
+    plt.figure(figsize=(12, 6))
+    sns.scatterplot(data=data, x="Actual", y="Predicted")
+
+    plt.title("Comparison of Actual and Predicted Categories")
+    plt.xlabel("Type")
+    plt.ylabel("Category")
+    plt.show()
