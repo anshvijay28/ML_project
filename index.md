@@ -1,5 +1,7 @@
 ---
 layout: default
+title: Cluster Analysis of Countries, their Regions, and Sustainability/Development Metrics.
+description: Ansh Vijay, John Zhang, Nicholas Polimeni, Lalith Siripurapu
 ---
 
 # Introduction/Background
@@ -332,6 +334,7 @@ For a more granular regional breakdown, we can use sub-region definitions:
 ![image](pictures/clusters_sub.png)
 
 To analyze each region and sub-region in more detail, we can use pair plots:
+
 **By Region**
 ![image](pictures/pairwise_region.png)
 **By Sub-Region**
@@ -349,6 +352,36 @@ For intra-regional analysis, some notable outliers within their regions are:
 - Ukraine (Eastern Europe): Ukraine has historically been an agrarian economy. Such economies are often less developed and produce fewer emissions. However, the region as a whole is generally considered a mix of more and less developed nations, so, notably, Ukraine is such an outlier.
 - Hong Kong and Mongolia (Eastern Asia): Hong Kong, due to its size and lack of many natural resources, is necessarily an incredibly efficient (due to population density) nation with few industrial emissions. Mongolia is the least developed nation in the region and is somewhat agrarian.
 - Spain and Albania (Southern Europe): Spain is extremely well developed in terms of human development, but suffers on a few economic measures like GDP per capita. However, due to their robust social services and public transit, it is not surprising that they perform well on other sustainability metrics. Albania is generally considered a developing European country and likely performs low on economic measures, but well on emissions and other sustainability metrics as a result.
+
+# Regressions
+Our clustering analysis found no strong relationship between sustainability and development metrics and a nation's region or sub-region. This is fairly surprising as inter-regional differences would be expected across continents due to historical development patterns. We want to verify these findings by using regression models.
+
+For this analysis, we use two models: linear and Ridge regression. We test both models against region and sub-region labels, providing 4 total predictive models for comparison.
+
+## Procedure
+
+- Data was split into test and train sets with a test size of 0.2 or 20% of the total data.
+- Labels were one-hot encoded. We chose one-hot encoding because the labels- country names- are not ordinal. We did not have enough labels for one-hot encoding to be computationally expensive. To avoid multicollinearity, the first dummy variable was dropped. This encoding was handled via pandas' ```get_dummies()``` function.
+
+## Linear Regression
+![image](pictures/linear_reg.png)
+
+## Ridge Regression
+We fit a Ridge regression for every alpha between 0 and 100, using increments of 2. From this, we determined that the optimal alphas are ~10 and ~20 for region and sub-region Ridge regressions, respectively.
+![image](pictures/alpha_plot.png)
+
+Using the alphas determined above, we plotted both Ridge regressions.
+![image](pictures/ridge_reg.png)
+
+## Results
+Regression | MSE | R<sup>2</sup> |
+---------- | --- | --- |
+Linear (region) | 0.7429 | 0.2565 |
+Linear (sub-region) | 26.8286 | 0.4613 |
+Ridge (region) | 0.7143 | 0.2851 |
+Ridge (sub-region) | 24.0857 | 0.3119 | 
+
+Predicting region has a much lower MSE error than predicting sub-region for both models. This indicates that using region to predict a nation's sustainability and development metrics is likely to be more accurate than using its sub-region. Notably, the R<sup>2</sup> value for 
 
 # References 
 Çağlar, M., Gürler, C. Sustainable Development Goals: A cluster analysis of worldwide countries. Environ Dev Sustain 24, 8593–8624 (2022). https://doi.org/10.1007/s10668-021-01801-6
