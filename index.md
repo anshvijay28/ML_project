@@ -367,21 +367,27 @@ For this analysis, we use two models: linear and Ridge regression. We test both 
 ![image](pictures/linear_reg.png)
 
 ## Ridge Regression
-We fit a Ridge regression for every alpha between 0 and 100, using increments of 2. From this, we determined that the optimal alphas are ~10 and ~20 for region and sub-region Ridge regressions, respectively.
+We fit a Ridge regression for every alpha between 0 and 100, using increments of 2. From this, we determined that the **optimal alphas are 70 and 5** for region and sub-region Ridge regressions, respectively.
+
 ![image](pictures/alpha_plot.png)
 
 Using the alphas determined above, we plotted both Ridge regressions.
+
 ![image](pictures/ridge_reg.png)
 
 ## Results
-Regression | MSE | R<sup>2</sup> |
+Regression | RMSE | R<sup>2</sup> |
 ---------- | --- | --- |
-Linear (region) | 0.7429 | 0.2565 |
-Linear (sub-region) | 26.8286 | 0.4613 |
-Ridge (region) | 0.7143 | 0.2851 |
-Ridge (sub-region) | 24.0857 | 0.3119 | 
+Linear (region) | 0.8619 | 0.2565 |
+Linear (sub-region) | 5.1796 | 0.4613 |
+Ridge (region) | 1.0141 | 0.0294 |
+Ridge (sub-region) | 5.1823 | 0.4628 | 
 
-Predicting region has a much lower MSE error than predicting sub-region for both models. This indicates that using region to predict a nation's sustainability and development metrics is likely to be more accurate than using its sub-region. Notably, the R<sup>2</sup> value for 
+Predicting region has a much lower MSE error than predicting sub-region for both models. This indicates that using region to predict a nation's sustainability and development metrics is likely to be more accurate than using its sub-region. Notably, the R<sup>2</sup> values for sub-region are much higher than for region, indicating that sub-region explains more of the variation in a nation's sustainability metrics than its greater region. 
+
+At first these results may appear contradictory, but this finding provides some potential insight into global development trends. First, it is important to note that there were many more categories for sub-region than region. This means that the probability of predicting a nation's region at random is much higher than selecting a nation's sub-region. Additionally, higher R<sup>2</sup> might simply be the result of more variation in sub-region than region due to the same mathematical fact. If we take the findings at face value, a region is more important for a nation's development and sustainability context, but a sub-region is much more useful for explaining the specific characteristics of that nation. More specifically, each sub-region might score fairly differently within its greater regional context due to sub-regional trends and environmental conditions which are more directly related to the conditions of a nation. For instance, take the entire African region. On the whole, it tends to have lower emissions per capita, but generally scores lower on development. Due to environmental, geographical, and historical conditions, each sub-region has developed quite differently within this general context; Northern Africa, which has a large trade volume with Europe, is very different than Sub-Saharan Africa, etc.
+
+On the whole, these findings still indicate that there is not a strong relationship between a nation's region or sub-region and sustainability and development metrics. These results are consistent with our more detailed analysis in the GMM section.
 
 # References 
 Çağlar, M., Gürler, C. Sustainable Development Goals: A cluster analysis of worldwide countries. Environ Dev Sustain 24, 8593–8624 (2022). https://doi.org/10.1007/s10668-021-01801-6
