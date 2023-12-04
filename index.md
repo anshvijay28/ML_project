@@ -376,12 +376,12 @@ Using the alphas determined above, we plotted both Ridge regressions.
 ![image](pictures/ridge_reg.png)
 
 ## Results
-Regression | RMSE | R<sup>2</sup> |
----------- | --- | --- |
-Linear (region) | 0.8619 | 0.2565 |
-Linear (sub-region) | 5.1796 | 0.4613 |
-Ridge (region) | 0.8452 | 0.2851 |
-Ridge (sub-region) | 4.9077 | 0.3119 | 
+| Regression | RMSE | R<sup>2</sup> |
+| ---------- | ---- | ----- |
+| Linear (region) | 0.8619 | 0.2565 |
+| Linear (sub-region) | 5.1796 | 0.4613 |
+| Ridge (region) | 0.8452 | 0.2851 |
+| Ridge (sub-region) | 4.9077 | 0.3119 | 
 
 Predicting region has a much lower MSE error than predicting sub-region for both models. This indicates that using region to predict a nation's sustainability and development metrics is likely to be more accurate than using its sub-region. Notably, the R<sup>2</sup> values for sub-region are much higher than for region, indicating that sub-region explains more of the variation in a nation's sustainability metrics than its greater region. 
 
