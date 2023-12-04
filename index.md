@@ -70,7 +70,7 @@ init_corr = df.corr()
 init_corr_viz = utils.viz_corr_heatmap(init_corr.abs(), False)
 init_corr_viz.show()
 ```
-We can visualize the covariance matrix (d x d) through the following graph:
+We can visualize the correlation matrix (d x d) through the following graph:
 ![Correlation Matrix Vis](pictures/correlationMatrixVis.png)
 Note: The **absolute values** in the covariance matrix have been graphed. 
 <br />
@@ -366,6 +366,8 @@ For this analysis, we use two models: linear and Ridge regression. We test both 
 
 ## Linear Regression
 ![image](pictures/linear_reg.png)
+
+The image shows the X axis as PCA 1 but 25 PCA features were used for the actual model. We only show one due to visualization limitations.
 
 ## Ridge Regression
 We fit a Ridge regression for every alpha between 0 and 100, using increments of 2. From this, we determined that the **optimal alphas are 10 and 20** for region and sub-region Ridge regressions, respectively.
