@@ -376,6 +376,7 @@ Using the alphas determined above, we plotted both Ridge regressions.
 ![image](pictures/ridge_reg.png)
 
 ## Results
+
 | Regression | RMSE | R<sup>2</sup> |
 | ---------- | ---- | ----- |
 | Linear (region) | 0.8619 | 0.2565 |
