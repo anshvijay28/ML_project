@@ -172,3 +172,18 @@ def viz_corr_heatmap(corr_df, is_absolute):
     ax.set_xticklabels(corr_df.columns, rotation=90)
 
     return f
+
+
+def viz_regression(actual, predicted, y_test):
+    sns.set_theme(style="whitegrid")
+    results = pd.DataFrame({"Actual": actual, "Predicted": predicted})
+    plt.figure(figsize=(10, 6))
+
+    plot = sns.scatterplot(x="Actual", y="Predicted", data=results)
+    plt.plot(
+        [y_test.min(), y_test.max()], [y_test.min(), y_test.max()], color="red", lw=2
+    )  # Diagonal line
+    plt.title("Actual vs Predicted Values (Linear Regression)")
+    plt.xlabel("Actual Values")
+    plt.ylabel("Predicted Values")
+    return plot
