@@ -298,25 +298,26 @@ Although we can see a clear clusters, we cannot identify which region each data 
  | ![PCA16](pictures/PCA16.png) | ![PCA17](pictures/PCA17.png) |
 
 ### Metrics 
-```
+
 Maximum depth:
 Silhouette Coefficient: 0.26
 Davies Bouldin Score: 1.62
-```
-Pairs of PCA components:
 
+#### Silhouette Coefficient Pairs
 | Silhouette Coefficient | PCA1 | PCA2 | PCA3 |
 | ---------- | ----- | ----- | ----- |
-| PCA2 | 0.50 |  |  |
-| PCA3 | 0.51 | 0.01 |  |
+| PCA2 | 0.50 | x | x |
+| PCA3 | 0.51 | 0.01 | x |
 | PCA4 | 0.54 | 0.10 | 0.08 |
-```
+
+
+#### Davies Bouldin Score Pairs
 | Davies Bouldin Score | PCA1 | PCA2 | PCA3 |
 | ---------- | ----- | ----- | ----- |
-| PCA2 | 0.74 |  |  |
-| PCA3 | 0.69 | 5.75 |  |
+| PCA2 | 0.74 | x | x |
+| PCA3 | 0.69 | 5.75 | x |
 | PCA4 | 0.71 | 19.41 | 5.50 |
-```
+
 3 components:
 Silhouette Coefficient for PCA components 1, 2, and 3: 0.43
 Davies Bouldin Score for PCA components 1, 2 and 3: 0.87
@@ -324,6 +325,8 @@ Davies Bouldin Score for PCA components 1, 2 and 3: 0.87
 ### Hierarchical Clustering Findings 
 
 Visually, Hierarchical Clustering was highly effective, with the first PCA component alone being very accurate at predicting which cluster a given point would belong to. For the maximum depth of the dendrogram, the metrics evaluated its clustering poorly because many of the dimensions contribute little to the clustering. However, when evaluating for a pair of components that includes the first PCA component, the score is significantly better while pairs of components without the first evaluate very poorly by our metrics. Furthermore, additional components beyond the second do not improve the evaluations, so it can be concluded that 2 PCA components are sufficient. 
+
+Across all regions, the first cluster consisted of countries of varied regions and tended towards lower values of the first PCA component (Human Development) suggesting this group consists of sustainable countries. However, the second cluster consisted of mostly African countries and a few from other regions with the exception of no countries in Europe. This aligns with the traditional notions of Europe and Africa's respective development. With respect to the first component, Africa consistently had countries placing in the middle or towards higher values that tended to be in the second cluster. With respect to other components, the clustering tended to be minimally influenced by them.
 
 
 
