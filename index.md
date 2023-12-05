@@ -377,6 +377,11 @@ For intra-regional analysis, some notable outliers within their regions are:
 - Hong Kong and Mongolia (Eastern Asia): Hong Kong, due to its size and lack of many natural resources, is necessarily an incredibly efficient (due to population density) nation with few industrial emissions. Mongolia is the least developed nation in the region and is somewhat agrarian.
 - Spain and Albania (Southern Europe): Spain is extremely well developed in terms of human development, but suffers on a few economic measures like GDP per capita. However, due to their robust social services and public transit, it is not surprising that they perform well on other sustainability metrics. Albania is generally considered a developing European country and likely performs low on economic measures, but well on emissions and other sustainability metrics as a result.
 
+# Hierarchical Clustering vs GMM
+
+## By Metrics
+Hierarchical Clustering tended to have better clustering evaluations when considering only the first PCA component and one other component and became closer as more components were considered in the clustering.
+
 # Regressions
 Our clustering analysis found no strong relationship between sustainability and development metrics and a nation's region or sub-region. This is fairly surprising as inter-regional differences would be expected across continents due to historical development patterns. We want to verify these findings by using regression models.
 
