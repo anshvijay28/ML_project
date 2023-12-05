@@ -381,13 +381,6 @@ For intra-regional analysis, some notable outliers within their regions are:
 - Hong Kong and Mongolia (Eastern Asia): Hong Kong, due to its size and lack of many natural resources, is necessarily an incredibly efficient (due to population density) nation with few industrial emissions. Mongolia is the least developed nation in the region and is somewhat agrarian.
 - Spain and Albania (Southern Europe): Spain is extremely well developed in terms of human development, but suffers on a few economic measures like GDP per capita. However, due to their robust social services and public transit, it is not surprising that they perform well on other sustainability metrics. Albania is generally considered a developing European country and likely performs low on economic measures, but well on emissions and other sustainability metrics as a result.
 
-# Hierarchical Clustering vs GMM
-
-## Clustering
-Hierarchical Clustering produced a clustering that was heavily associated with the first PCA component whereas GMM has no clear pattern when observing the first two PCA components.
-
-## By Metrics
-Hierarchical Clustering tended to have better clustering evaluations when considering only the first PCA component and one other component and became closer as more components were considered in the clustering.
 
 # Regressions
 Our clustering analysis found no strong relationship between sustainability and development metrics and a nation's region or sub-region. This is fairly surprising as inter-regional differences would be expected across continents due to historical development patterns. We want to verify these findings by using regression models.
@@ -428,10 +421,12 @@ At first these results may appear contradictory, but this finding provides some 
 
 On the whole, these findings still indicate that there is not a strong relationship between a nation's region or sub-region and sustainability and development metrics. These results are consistent with our more detailed analysis in the GMM section.
 
-## Conclusion
-After performing Hierarichal Clustering and Gaussian Mixture Model, Hierarichal clustering identified relationships between features better than GMM. For GMM, there is a balance between economic development and environmental sustainability metrics. This is why some regions considered less developed have countries that do better than expected. They may not score as high on economic development but they do well on emissions and etc, but this is why there were no strong inter regional trends. For Heirarchical clustering, one can clearly see relationships between human development (PCA component 1) plotted against the other PCA components. As a result, these relationships between PCA components can inform future global sustainability efforts because researchers can identify which feature they need to improve for a cluster.
+## Conclusion and Comparison
+After performing Hierarichal Clustering and Gaussian Mixture Model, Hierarichal clustering identified relationships between features better than GMM. For GMM, there is a balance between economic development and environmental sustainability metrics. This is why some regions considered less developed have countries that do better than expected. They may not score as high on economic development but they do well on emissions and etc, but this is why there were no strong inter regional trends. For Hierarchical clustering, one can clearly see relationships between human development (PCA component 1) plotted against the other PCA components. As a result, these relationships between PCA components can inform future global sustainability efforts because researchers can identify which feature they need to improve for a cluster.
 
-Furtheremore, using the PCA components to predict region labels yeild less error; thus, if one would ever want to predict what region a place is located given sustainability metrics, linear and ridge regression would be appropriate. Therefore, results from hierarchical clustering ,specifically the relationship between the Human Development(PCA component 1) to the other PCA components, should inform any future global sustainability efforts.
+Furtheremore, using the PCA components to predict region labels yield less error; thus, if one would ever want to predict what region a place is located given sustainability metrics, linear and ridge regression would be appropriate. Therefore, results from hierarchical clustering ,specifically the relationship between the Human Development(PCA component 1) to the other PCA components, should inform any future global sustainability efforts.
+
+Hierarchical Clustering tended to have better clustering evaluations than GMM when considering only the first PCA component and one other component. However, it became closer to GMM's poor scores as more components were considered in the clustering.
 
 # References 
 Çağlar, M., Gürler, C. Sustainable Development Goals: A cluster analysis of worldwide countries. Environ Dev Sustain 24, 8593–8624 (2022). https://doi.org/10.1007/s10668-021-01801-6
@@ -447,7 +442,7 @@ Mathrani, Anuradha, Jian Wang, Ding Li, and Xuanzhen Zhang. 2023. "Clustering An
 | Name        | Contribution|
 | ----------- | ----------- |
 | Ansh Vijay  | Setting up Github Pages <br /> Contribution Table <br /> UI of website <br /> Problem definition <br /> Dataset description <br /> Data Cleaning <br /> Hierarchical Clustering Metrics <br /> Hierarchical Clustering Visualizations|
-| John Zhang  | Potential Results and Discussion <br /> DBSCAN <br /> Hierarchical Clustering <br /> Clustering Metrics <br /> Hierarchical Clustering Findings|
+| John Zhang  | Potential Results and Discussion <br /> DBSCAN <br /> Hierarchical Clustering <br /> Clustering Metrics <br /> Hierarchical Clustering Findings <br /> Clustering Metrics Comparison|
 | Nicholas Polimeni | Found dataset <br /> Introduction/Background <br /> Gannt Chart <br /> Feature Engineering <br /> PCA <br /> GMM <br /> Regressions <br /> Analysis|
 | Lalith Siripurapu | Recording Video <br /> Methods <br /> PCA|
 
