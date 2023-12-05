@@ -428,6 +428,9 @@ At first these results may appear contradictory, but this finding provides some 
 
 On the whole, these findings still indicate that there is not a strong relationship between a nation's region or sub-region and sustainability and development metrics. These results are consistent with our more detailed analysis in the GMM section.
 
+## Conclusion
+After performing Hierarichal Clustering, Gaussian Mixture Model, Linear Regression, and Ridge Regression, one can see that Hierarichal Clustering yielded the most informative results.  As a result, efforst for future sustainability should be inferred upon results of heirarcal clustering. Specifically, the relationship between the Human Development(PCA component 1) to the other PCA components should inform any future global sustainability efforts.
+
 # References 
 Çağlar, M., Gürler, C. Sustainable Development Goals: A cluster analysis of worldwide countries. Environ Dev Sustain 24, 8593–8624 (2022). https://doi.org/10.1007/s10668-021-01801-6
 <br />
