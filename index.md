@@ -441,7 +441,7 @@ Mathrani, Anuradha, Jian Wang, Ding Li, and Xuanzhen Zhang. 2023. "Clustering An
 | Ansh Vijay  | Setting up Github Pages <br /> Contribution Table <br /> UI of website <br /> Problem definition <br /> Dataset description <br /> Data Cleaning <br /> Hierarchical Clustering Metrics <br /> Hierarchical Clustering Visualizations|
 | John Zhang  | Potential Results and Discussion <br /> DBSCAN <br /> Hierarchical Clustering <br /> Clustering Metrics <br /> Hierarchical Clustering Findings <br /> Clustering Metrics Comparison|
 | Nicholas Polimeni | Found dataset <br /> Introduction/Background <br /> Gannt Chart <br /> Feature Engineering <br /> PCA <br /> GMM <br /> Regressions <br /> Analysis|
-| Lalith Siripurapu | Recording Video <br /> Methods <br /> PCA|
+| Lalith Siripurapu | Recording Video <br /> Methods <br /> PCA <br /> Comparison and Conclusion <br /> Slide Deck Presentation|
 
 # Gantt Chart
 [Link to Gantt Chart](https://gtvault-my.sharepoint.com/:x:/g/personal/npolimeni3_gatech_edu/EcyA5LHVj-VInbvsiN7a9zIBYMocgsMFTuQmjAW3kMClgQ?e=rHj83t)
