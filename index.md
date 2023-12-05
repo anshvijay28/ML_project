@@ -299,13 +299,33 @@ Although we can see a clear clusters, we cannot identify which region each data 
 
 ### Metrics 
 ```
+Maximum depth:
 Silhouette Coefficient: 0.26
 Davies Bouldin Score: 1.62
 ```
+Pairs of PCA components:
+
+| Silhouette Coefficient | PCA1 | PCA2 | PCA3 |
+| ---------- | ----- | ----- | ----- |
+| PCA2 | 0.50 |  |  |
+| PCA3 | 0.51 | 0.01 |  |
+| PCA4 | 0.54 | 0.10 | 0.08 |
+```
+| Davies Bouldin Score | PCA1 | PCA2 | PCA3 |
+| ---------- | ----- | ----- | ----- |
+| PCA2 | 0.74 |  |  |
+| PCA3 | 0.69 | 5.75 |  |
+| PCA4 | 0.71 | 19.41 | 5.50 |
+```
+3 components:
+Silhouette Coefficient for PCA components 1, 2, and 3: 0.43
+Davies Bouldin Score for PCA components 1, 2 and 3: 0.87
 
 ### Hierarchical Clustering Findings 
 
-Visually, Hierarchical Clustering was highly effective, with the first PCA component alone being very accurate at predicting which cluster a given point would belong to. However, the metrics still evaluated poorly.
+Visually, Hierarchical Clustering was highly effective, with the first PCA component alone being very accurate at predicting which cluster a given point would belong to. For the maximum depth of the dendrogram, the metrics evaluated its clustering poorly because many of the dimensions contribute little to the clustering. However, when evaluating for a pair of components that includes the first PCA component, the score is significantly better while pairs of components without the first evaluate very poorly by our metrics. Furthermore, additional components beyond the second do not improve the evaluations, so it can be concluded that 2 PCA components are sufficient. 
+
+
 
 
 ## GMM
@@ -407,7 +427,7 @@ Mathrani, Anuradha, Jian Wang, Ding Li, and Xuanzhen Zhang. 2023. "Clustering An
 | Name        | Contribution|
 | ----------- | ----------- |
 | Ansh Vijay  | Setting up Github Pages <br /> Contribution Table <br /> UI of website <br /> Problem definition <br /> Dataset description <br /> Data Cleaning <br /> Hierarchical Clustering Metrics <br /> Hierarchical Clustering Visualizations|
-| John Zhang  | Potential Results and Discussion <br /> DBSCAN <br /> Hierarchical Clustering <br /> Clustering Metrics|
+| John Zhang  | Potential Results and Discussion <br /> DBSCAN <br /> Hierarchical Clustering <br /> Clustering Metrics <br /> Hierarchical Clustering Findings|
 | Nicholas Polimeni | Found dataset <br /> Introduction/Background <br /> Gannt Chart <br /> Feature Engineering <br /> PCA <br /> GMM <br /> Regressions <br /> Analysis|
 | Lalith Siripurapu | Recording Video <br /> Methods <br /> PCA|
 
