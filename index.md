@@ -300,10 +300,12 @@ Although we can see a clear clusters, we cannot identify which region each data 
 ### Metrics 
 
 Maximum depth:
+```
 Silhouette Coefficient: 0.26
 Davies Bouldin Score: 1.62
-
+```
 #### Silhouette Coefficient Pairs
+
 | Silhouette Coefficient | PCA1 | PCA2 | PCA3 |
 | ---------- | ----- | ----- | ----- |
 | PCA2 | 0.50 | x | x |
@@ -312,6 +314,7 @@ Davies Bouldin Score: 1.62
 
 
 #### Davies Bouldin Score Pairs
+
 | Davies Bouldin Score | PCA1 | PCA2 | PCA3 |
 | ---------- | ----- | ----- | ----- |
 | PCA2 | 0.74 | x | x |
@@ -319,9 +322,10 @@ Davies Bouldin Score: 1.62
 | PCA4 | 0.71 | 19.41 | 5.50 |
 
 3 components:
+```
 Silhouette Coefficient for PCA components 1, 2, and 3: 0.43
 Davies Bouldin Score for PCA components 1, 2 and 3: 0.87
-
+```
 ### Hierarchical Clustering Findings 
 
 Visually, Hierarchical Clustering was highly effective, with the first PCA component alone being very accurate at predicting which cluster a given point would belong to. For the maximum depth of the dendrogram, the metrics evaluated its clustering poorly because many of the dimensions contribute little to the clustering. However, when evaluating for a pair of components that includes the first PCA component, the score is significantly better while pairs of components without the first evaluate very poorly by our metrics. Furthermore, additional components beyond the second do not improve the evaluations, so it can be concluded that 2 PCA components are sufficient. 
@@ -378,6 +382,9 @@ For intra-regional analysis, some notable outliers within their regions are:
 - Spain and Albania (Southern Europe): Spain is extremely well developed in terms of human development, but suffers on a few economic measures like GDP per capita. However, due to their robust social services and public transit, it is not surprising that they perform well on other sustainability metrics. Albania is generally considered a developing European country and likely performs low on economic measures, but well on emissions and other sustainability metrics as a result.
 
 # Hierarchical Clustering vs GMM
+
+## Clustering
+Hierarchical Clustering produced a clustering that was heavily associated with the first PCA component whereas GMM has no clear pattern when observing the first two PCA components.
 
 ## By Metrics
 Hierarchical Clustering tended to have better clustering evaluations when considering only the first PCA component and one other component and became closer as more components were considered in the clustering.
